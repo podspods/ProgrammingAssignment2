@@ -1,13 +1,12 @@
 # Pods
-## Put comments here that give an overall description of what your
-## functions do
+# -------------------- usage 
+# cacheMatrive <- makeCacheMatrix(matriceToCache)
+# result <- cacheSolve(cacheMatrive)
+# This generic function solves the equation a %*% x = b for x, 
+# where b can be either a vector or a matrix.
 
-## Write a short comment describing this function
-<<<<<<< HEAD
-library('MASS')
-=======
+# this fuction create a cache variable containing the matrix,the matrix inverse, the reverse function,  
 
->>>>>>> 55782f03cdcc12aeef6ac8509d15d8504b131a34
 makeCacheMatrix <- function(x = matrix()) {
 
     matrixInverse <- NULL
@@ -16,11 +15,7 @@ makeCacheMatrix <- function(x = matrix()) {
         matrixInverse <<- NULL
     }
     get <- function() x
-<<<<<<< HEAD
-    setInvMatrix <- function(ginv) matrixInverse <<- ginv
-=======
-    setInvMatrix <- function(rnorm) matrixInverse <<- rnorm
->>>>>>> 55782f03cdcc12aeef6ac8509d15d8504b131a34
+    setInvMatrix <- function(solve) matrixInverse <<- solve
     getInvMatrix <- function() matrixInverse
     list(set = set, 
          get = get,
@@ -30,7 +25,9 @@ makeCacheMatrix <- function(x = matrix()) {
 }
 
 
-## Write a short comment describing this function
+# this function check if the matrix is already calculate
+# if the matrix inverse exist then return the cache value
+# else calculate the inverse matrix by using solve function and cache data
 
 cacheSolve <- function(x, ...) {
 ## Return a matrix that is the inverse of 'x'
@@ -38,11 +35,7 @@ cacheSolve <- function(x, ...) {
     if(is.null(matrixInverse)) {
         message("no cached data yet")
         data <- x$get()
-<<<<<<< HEAD
-        matrixInverse <- ginv(data)
-=======
-        matrixInverse <- rnorm(data, ...)
->>>>>>> 55782f03cdcc12aeef6ac8509d15d8504b131a34
+        matrixInverse <- solve(data,...)
         x$setInvMatrix(matrixInverse)
     } else{
         message("getting cached data")
